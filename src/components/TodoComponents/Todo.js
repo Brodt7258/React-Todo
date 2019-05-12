@@ -1,7 +1,9 @@
 import React from 'react';
 
-export default ({ taskData }) => {
+export default ({ taskData, handleToggle }) => {
   return (
-    <div>{taskData.task}</div>
+    <div onClick={() => handleToggle(taskData.id)}>
+      {taskData.task}
+    </div>
   );
 };
