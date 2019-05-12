@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import TodoList from './components/TodoComponents/TodoList';
+import TodoForm from './components/TodoComponents/TodoForm';
 
 export default () => {
   const [state, setState] = useState([
@@ -31,10 +32,12 @@ export default () => {
     setState(state.filter(e => !e.completed));
   };
 
+  console.log(state);
   return (
     <div>
       <h2>Welcome to your Todo App!</h2>
-      <TodoList todos={state} />
+      <TodoList todos={state} handleToggle={toggleCompletion} />
+      <TodoForm handleAdd={addTask} handleDelete={deleteCompleted} />
     </div>
   );
 };
