@@ -30,7 +30,10 @@ export default ({ handleAdd, handleDelete }) => {
         onChange={handleInput}
         value={value}
       />
-      <button onClick={submitBtnCtrl}>
+      <button
+        onClick={submitBtnCtrl}
+        type="submit"
+      >
         Add Todo
       </button>
       <button onClick={deleteBtnCtrl}>
