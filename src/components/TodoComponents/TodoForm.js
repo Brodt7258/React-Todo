@@ -19,6 +19,7 @@ export default ({ handleAdd, handleDelete }) => {
 
   const deleteBtnCtrl = (e) => {
     e.preventDefault();
+    handleDelete();
   };
 
   return(
