@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import './App.scss';
 
 import TodoList from './components/TodoComponents/TodoList';
 import TodoForm from './components/TodoComponents/TodoForm';
+import Header from './components/Header/Header';
 
 export default () => {
   const [state, setState] = useState([
@@ -35,9 +37,11 @@ export default () => {
   console.log(state);
   return (
     <div>
-      <h2>Welcome to your Todo App!</h2>
-      <TodoList todos={state} handleToggle={toggleCompletion} />
-      <TodoForm handleAdd={addTask} handleDelete={deleteCompleted} />
+      <Header />
+      <div className="app-container">
+        <TodoList todos={state} handleToggle={toggleCompletion} />
+        <TodoForm handleAdd={addTask} handleDelete={deleteCompleted} />
+      </div>
     </div>
   );
 };
