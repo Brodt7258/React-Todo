@@ -5,36 +5,49 @@ import TodoList from './components/TodoComponents/TodoList';
 import TodoForm from './components/TodoComponents/TodoForm';
 import Header from './components/Header/Header';
 
+const todo_key = 'todos'
+const updateStorage = (state) => {
+  window.localStorage.setItem(todo_key, JSON.stringify(state));
+}
+
 export default () => {
-  const [state, setState] = useState([
-    {
+  const [state, setState] = useState(window.localStorage.getItem('todos')
+    ? JSON.parse(window.localStorage.getItem('todos'))
+    : [
+      {
       task: 'Organize Garage',
       id: 1528817077286,
       completed: false
-    },
-    {
-      task: 'Bake Cookies',
-      id: 1528817084358,
-      completed: false
-    }
-  ]);
+      },
+      {
+        task: 'Bake Cookies',
+        id: 1528817084358,
+        completed: false
+      }
+    ]
+  );
 
   const addTask = task => {
-    setState([ ...state, task ]);
+    const newState = [ ...state, task ];
+    setState(newState);
+    updateStorage(newState);
   };
 
   const toggleCompletion = id => {
-    setState(state.map(e => e.id === id
+    const newState = state.map(e => e.id === id
       ? { ...e, completed: !e.completed }
       : e
-    ));
+    );
+    setState(newState);
+    updateStorage(newState);
   };
 
   const deleteCompleted = () => {
-    setState(state.filter(e => !e.completed));
+    const newState = state.filter(e => !e.completed);
+    setState(newState);
+    updateStorage(newState);
   };
 
-  console.log(state);
   return (
     <div>
       <Header />
