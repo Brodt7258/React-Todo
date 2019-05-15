@@ -6,6 +6,8 @@ import TodoList from './components/TodoComponents/TodoList';
 import TodoForm from './components/TodoComponents/TodoForm';
 import Header from './components/Header/Header';
 
+import useDebounce from './util/helpers';
+
 const todo_key = 'todos'
 const updateStorage = (state) => {
   window.localStorage.setItem(todo_key, JSON.stringify(state));
@@ -28,11 +30,14 @@ const App = () => {
       }
     ]
   );
+
   const [searchTerm, setTerm] = useState('');
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
+
   const [searchResults, setResults] = useState([]);
 
   useEffect(() => {
-    if (!searchTerm) {
+    if (!debouncedSearchTerm) {
       setResults([]);
       return;
     }
@@ -42,8 +47,8 @@ const App = () => {
       threshold: 0.5,
       shouldSort: true
     });
-    setResults(todoSearch.search(searchTerm));
-  }, [searchTerm, todos]);
+    setResults(todoSearch.search(debouncedSearchTerm));
+  }, [debouncedSearchTerm, todos]);
 
   const setSearch = e => {
     setTerm(e.target.value);
@@ -74,7 +79,12 @@ const App = () => {
     <>
       <Header searchVal={searchTerm} handleSearch={setSearch} />
       <div className="app-container">
-        <TodoList todos={todos} searchResults={searchResults} handleToggle={toggleCompletion} />
+        <TodoList 
+          todos={todos} 
+          searchResults={searchResults} 
+          searchTerm={debouncedSearchTerm} 
+          handleToggle={toggleCompletion} 
+        />
         <TodoForm handleAdd={addTask} handleDelete={deleteCompleted} />
       </div>
     </>
