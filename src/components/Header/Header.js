@@ -1,7 +1,7 @@
 import React from 'react';
 import './Header.scss';
 
-export default () => {
+const Header = () => {
   return (
     <header className="header-bar">
       <h1>
@@ -10,3 +10,5 @@ export default () => {
     </header>
   );
 };
+
+export default Header;

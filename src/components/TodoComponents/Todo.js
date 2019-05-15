@@ -3,7 +3,7 @@ import { FaRegCircle, FaRegCheckCircle } from 'react-icons/fa';
 
 import './Todo.scss';
 
-export default ({ taskData, handleToggle }) => {
+ const Todo = ({ taskData, handleToggle }) => {
   return (
     <li 
       onClick={() => handleToggle(taskData.id)}
@@ -19,3 +19,5 @@ export default ({ taskData, handleToggle }) => {
     </li>
   );
 };
+
+export default Todo;

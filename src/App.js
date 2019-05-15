@@ -10,14 +10,14 @@ const updateStorage = (state) => {
   window.localStorage.setItem(todo_key, JSON.stringify(state));
 }
 
-export default () => {
+const App = () => {
   const [state, setState] = useState(window.localStorage.getItem('todos')
     ? JSON.parse(window.localStorage.getItem('todos'))
     : [
       {
-      task: 'Organize Garage',
-      id: 1528817077286,
-      completed: false
+        task: 'Organize Garage',
+        id: 1528817077286,
+        completed: false
       },
       {
         task: 'Bake Cookies',
@@ -58,3 +58,5 @@ export default () => {
     </div>
   );
 };
+
+export default App;

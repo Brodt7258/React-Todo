@@ -3,7 +3,7 @@ import React from 'react';
 import Todo from './Todo';
 import './Todo.scss';
 
-export default ({ todos, handleToggle }) => {
+ const TodoList = ({ todos, handleToggle }) => {
   return (
     <div>
       <h3 className="sub-title">On your list today...</h3>
@@ -13,3 +13,5 @@ export default ({ todos, handleToggle }) => {
     </div>
   );
 };
+
+export default TodoList;

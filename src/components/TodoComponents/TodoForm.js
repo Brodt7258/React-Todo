@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import './Todo.scss';
 
-export default ({ handleAdd, handleDelete }) => {
+const TodoForm = ({ handleAdd, handleDelete }) => {
   const [value, setValue] = useState('');
 
   const handleInput = (e) => {
@@ -53,3 +53,5 @@ export default ({ handleAdd, handleDelete }) => {
     </div>
   );
 };
+
+export default TodoForm;
