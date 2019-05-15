@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Fuse from 'fuse.js';
 import './App.scss';
 
 import TodoList from './components/TodoComponents/TodoList';
@@ -25,8 +26,21 @@ const App = () => {
         id: 1528817084358,
         completed: false
       }
-    ]
+    ],
+    searchTerm: '',
+    searchResults: []
   });
+
+  useEffect(() => {
+    console.log(state);
+  });
+
+  const setSearch = e => {
+    setState({
+      ...state,
+      searchTerm: e.target.value
+    });
+  };
 
   const addTask = task => {
     const newTodos = [ ...state.todos, task ];
@@ -59,13 +73,13 @@ const App = () => {
   };
 
   return (
-    <div>
-      <Header />
+    <>
+      <Header searchVal={state.searchTerm} handleSearch={setSearch} />
       <div className="app-container">
         <TodoList todos={state.todos} handleToggle={toggleCompletion} />
         <TodoForm handleAdd={addTask} handleDelete={deleteCompleted} />
       </div>
-    </div>
+    </>
   );
 };
 
