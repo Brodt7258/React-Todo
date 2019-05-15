@@ -28,12 +28,35 @@ const App = () => {
       }
     ],
     searchTerm: '',
+    lastSearch: '',
     searchResults: []
+  });
+
+  const todoSearch = new Fuse(state.todos, {
+    keys: ['task'],
+    threshold: 0.5,
+    shouldSort: true
   });
 
   useEffect(() => {
     console.log(state);
-  });
+    if (state.searchTerm === state.lastSearch) return;
+
+    if (!state.searchTerm) {
+      setState({
+        ...state,
+        lastSearch: '',
+        searchResults: []
+      });
+    } else {
+      setState({
+        ...state,
+        lastSearch: state.searchTerm,
+        searchResults: todoSearch.search(state.searchTerm)
+      });
+    }
+
+  }, [state, todoSearch]);
 
   const setSearch = e => {
     setState({
