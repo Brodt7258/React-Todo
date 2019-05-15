@@ -12,8 +12,8 @@ const updateStorage = (state) => {
 }
 
 const App = () => {
-  const [state, setState] = useState({
-    todos: window.localStorage.getItem('todos')
+  const [todos, setTodos] = useState(
+    window.localStorage.getItem('todos')
     ? JSON.parse(window.localStorage.getItem('todos'))
     : [
       {
@@ -26,80 +26,55 @@ const App = () => {
         id: 1528817084358,
         completed: false
       }
-    ],
-    searchTerm: '',
-    lastSearch: '',
-    searchResults: []
-  });
-
-  const todoSearch = new Fuse(state.todos, {
-    keys: ['task'],
-    threshold: 0.5,
-    shouldSort: true
-  });
+    ]
+  );
+  const [searchTerm, setTerm] = useState('');
+  const [searchResults, setResults] = useState([]);
 
   useEffect(() => {
-    console.log(state);
-    if (state.searchTerm === state.lastSearch) return;
-
-    if (!state.searchTerm) {
-      setState({
-        ...state,
-        lastSearch: '',
-        searchResults: []
-      });
-    } else {
-      setState({
-        ...state,
-        lastSearch: state.searchTerm,
-        searchResults: todoSearch.search(state.searchTerm)
-      });
+    if (!searchTerm) {
+      setResults([]);
+      return;
     }
 
-  }, [state, todoSearch]);
+    const todoSearch = new Fuse(todos, {
+      keys: ['task'],
+      threshold: 0.5,
+      shouldSort: true
+    });
+    setResults(todoSearch.search(searchTerm));
+  }, [searchTerm, todos]);
 
   const setSearch = e => {
-    setState({
-      ...state,
-      searchTerm: e.target.value
-    });
+    setTerm(e.target.value);
   };
 
   const addTask = task => {
-    const newTodos = [ ...state.todos, task ];
-    setState({
-      ...state,
-      todos: newTodos
-    });
+    const newTodos = [ ...todos, task ];
+    setTodos(newTodos);
     updateStorage(newTodos);
   };
 
   const toggleCompletion = id => {
-    const newTodos = state.todos.map(e => e.id === id
+    const newTodos = todos.map(e => e.id === id
       ? { ...e, completed: !e.completed }
       : e
     );
-    setState({
-      ...state,
-      todos: newTodos
-    });
+    setTodos(newTodos);
     updateStorage(newTodos);
   };
 
   const deleteCompleted = () => {
-    const newTodos = state.todos.filter(e => !e.completed);
-    setState({
-      ...state,
-      todos: newTodos
-    });
+    const newTodos = todos.filter(e => !e.completed);
+    setTodos(newTodos);
     updateStorage(newTodos);
   };
 
   return (
     <>
-      <Header searchVal={state.searchTerm} handleSearch={setSearch} />
+      <Header searchVal={searchTerm} handleSearch={setSearch} />
       <div className="app-container">
-        <TodoList todos={state.todos} handleToggle={toggleCompletion} />
+        <TodoList todos={todos} searchResults={searchResults} handleToggle={toggleCompletion} />
         <TodoForm handleAdd={addTask} handleDelete={deleteCompleted} />
       </div>
     </>
