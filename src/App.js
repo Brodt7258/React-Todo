@@ -11,7 +11,8 @@ const updateStorage = (state) => {
 }
 
 const App = () => {
-  const [state, setState] = useState(window.localStorage.getItem('todos')
+  const [state, setState] = useState({
+    todos: window.localStorage.getItem('todos')
     ? JSON.parse(window.localStorage.getItem('todos'))
     : [
       {
@@ -25,34 +26,43 @@ const App = () => {
         completed: false
       }
     ]
-  );
+  });
 
   const addTask = task => {
-    const newState = [ ...state, task ];
-    setState(newState);
-    updateStorage(newState);
+    const newTodos = [ ...state.todos, task ];
+    setState({
+      ...state,
+      todos: newTodos
+    });
+    updateStorage(newTodos);
   };
 
   const toggleCompletion = id => {
-    const newState = state.map(e => e.id === id
+    const newTodos = state.todos.map(e => e.id === id
       ? { ...e, completed: !e.completed }
       : e
     );
-    setState(newState);
-    updateStorage(newState);
+    setState({
+      ...state,
+      todos: newTodos
+    });
+    updateStorage(newTodos);
   };
 
   const deleteCompleted = () => {
-    const newState = state.filter(e => !e.completed);
-    setState(newState);
-    updateStorage(newState);
+    const newTodos = state.todos.filter(e => !e.completed);
+    setState({
+      ...state,
+      todos: newTodos
+    });
+    updateStorage(newTodos);
   };
 
   return (
     <div>
       <Header />
       <div className="app-container">
-        <TodoList todos={state} handleToggle={toggleCompletion} />
+        <TodoList todos={state.todos} handleToggle={toggleCompletion} />
         <TodoForm handleAdd={addTask} handleDelete={deleteCompleted} />
       </div>
     </div>
