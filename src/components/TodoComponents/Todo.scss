@@ -103,3 +103,15 @@
   justify-content: center;
   align-items: center;
 }
+
+h3 {
+  transition: color 0.4s ease;
+}
+
+.light-title {
+  color: black;
+}
+
+.dark-title {
+  color: slateblue;
+}
