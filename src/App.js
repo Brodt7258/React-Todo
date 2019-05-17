@@ -5,6 +5,7 @@ import './App.scss';
 import TodoList from './components/TodoComponents/TodoList';
 import TodoForm from './components/TodoComponents/TodoForm';
 import Header from './components/Header/Header';
+import ThemeToggle from './components/ThemeToggle/ThemeToggle';
 
 import useDebounce from './util/helpers';
 
@@ -87,6 +88,7 @@ const App = () => {
         />
         <TodoForm handleAdd={addTask} handleDelete={deleteCompleted} />
       </div>
+      <ThemeToggle />
     </>
   );
 };
