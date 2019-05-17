@@ -10,14 +10,15 @@ import ThemeToggle from './components/ThemeToggle/ThemeToggle';
 import { useDebounce, ThemeContext } from './util/helpers';
 
 const todo_key = 'todos';
-const updateStorage = (state) => {
-  window.localStorage.setItem(todo_key, JSON.stringify(state));
+const dark_theme = 'dark';
+const updateStorage = (key, state) => {
+  window.localStorage.setItem(key, JSON.stringify(state));
 }
 
 const App = () => {
   const [todos, setTodos] = useState(
-    window.localStorage.getItem('todos')
-    ? JSON.parse(window.localStorage.getItem('todos'))
+    window.localStorage.getItem(todo_key)
+    ? JSON.parse(window.localStorage.getItem(todo_key))
     : [
       {
         task: 'Organize Garage',
@@ -35,7 +36,7 @@ const App = () => {
   const addTask = task => {
     const newTodos = [ ...todos, task ];
     setTodos(newTodos);
-    updateStorage(newTodos);
+    updateStorage(todo_key, newTodos);
   };
 
   const toggleCompletion = id => {
@@ -44,13 +45,13 @@ const App = () => {
       : e
     );
     setTodos(newTodos);
-    updateStorage(newTodos);
+    updateStorage(todo_key, newTodos);
   };
 
   const deleteCompleted = () => {
     const newTodos = todos.filter(e => !e.completed);
     setTodos(newTodos);
-    updateStorage(newTodos);
+    updateStorage(todo_key, newTodos);
   };
 
   // Search Stuff
@@ -80,10 +81,16 @@ const App = () => {
 
   // Theme Stuff
 
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(
+    window.localStorage.getItem(dark_theme)
+    ? JSON.parse(window.localStorage.getItem(dark_theme))
+    : false
+  );
 
   const toggleDark = () => {
-    setDarkMode(!darkMode);
+    const newTheme = !darkMode;
+    setDarkMode(newTheme);
+    updateStorage(dark_theme, newTheme);
   };
 
   useEffect(() => {
