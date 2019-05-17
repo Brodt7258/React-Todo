@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaRegCircle, FaRegCheckCircle } from 'react-icons/fa';
 
 import './Todo.scss';
+import { ThemeContext } from '../../util/helpers';
 
  const Todo = ({ taskData, handleToggle }) => {
+  const darkMode = useContext(ThemeContext);
+
   return (
     <li 
       onClick={() => handleToggle(taskData.id)}
-      className="todo-item"
+      className={`todo-item ${darkMode ? 'todo-dark' : 'todo-light'}`}
       style={{ textDecoration: taskData.completed ? 'line-through' : 'none' }}
     >
       <p>

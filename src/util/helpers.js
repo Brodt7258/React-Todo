@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, createContext } from 'react';
 
-const useDebounce = (value, delay) => {
+export const useDebounce = (value, delay) => {
   const [debouncedVal, setDebouncedVal] = useState(value);
 
   useEffect(() => {
@@ -16,4 +16,4 @@ const useDebounce = (value, delay) => {
   return debouncedVal;
 }
 
-export default useDebounce;
+export const ThemeContext = createContext(false);

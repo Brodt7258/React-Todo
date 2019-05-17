@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import './ThemeToggle.scss';
+import { ThemeContext } from '../../util/helpers';
 
-const ThemeToggle = () => {
+const ThemeToggle = ({ handleToggle }) => {
+  const darkMode = useContext(ThemeContext);  
+
   return (
     <div className="theme-toggle">
-      <input id="theme-toggle" type="checkbox"/>
+      <input id="theme-toggle" type="checkbox" onChange={handleToggle} checked={darkMode} />
       <label htmlFor="theme-toggle" className="toggle-btn"></label>
-    </div>
-    
-  )
+    </div>   
+  );
 };
 
 export default ThemeToggle;

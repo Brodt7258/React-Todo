@@ -8,6 +8,10 @@
   }
 }
 
+body {
+  transition: background-color 0.5s ease;
+}
+
 .app-container {
   width: 100%;
   max-width: 800px;
