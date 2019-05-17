@@ -12,6 +12,8 @@ const TodoForm = ({ handleAdd, handleDelete }) => {
 
   const submitBtnCtrl = (e) => {
     e.preventDefault();
+    if (!value) return;
+
     handleAdd({
       task: value,
       id: Date.now(),
