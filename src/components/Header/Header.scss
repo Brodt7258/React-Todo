@@ -51,11 +51,11 @@
   }
 
   input {
-    color: slateblue;
+    color: palevioletred;
     background-color: #212121;
 
     &::placeholder {
-      color: rgba($color: slateblue, $alpha: 0.6);
+      color: rgba($color: palevioletred, $alpha: 0.6);
     }
   }
 }

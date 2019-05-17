@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import './Todo.scss';
+import { ThemeContext } from '../../util/helpers';
 
 const TodoForm = ({ handleAdd, handleDelete }) => {
   const [value, setValue] = useState('');
@@ -24,8 +25,10 @@ const TodoForm = ({ handleAdd, handleDelete }) => {
     handleDelete();
   };
 
+  const darkMode = useContext(ThemeContext);
+
   return(
-    <div className="todo-ctrls">
+    <div className={`todo-ctrls ${darkMode ? 'dark-ctrls' : 'light-ctrls'}`}>
       <h3>What else needs to get done?</h3>
       <form action="">
         <input 

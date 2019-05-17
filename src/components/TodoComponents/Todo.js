@@ -17,7 +17,7 @@ import { ThemeContext } from '../../util/helpers';
         {taskData.task}
       </p>
       {taskData.completed
-      ? <FaRegCheckCircle className="check-icon" style={{ color: 'limegreen' }} />
+      ? <FaRegCheckCircle className="check-icon" style={{ color: darkMode ? 'teal' : 'limegreen' }} />
       : <FaRegCircle className="check-icon" style={{ color: darkMode ? 'palevioletred' : 'crimson' }} />}
     </li>
   );
