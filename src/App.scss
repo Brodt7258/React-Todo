@@ -1,0 +1,20 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  &::after, &::before {
+    box-sizing: border-box;
+  }
+}
+
+body {
+  transition: background-color 0.5s ease;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 3em auto;
+  padding: 0 2em;
+}

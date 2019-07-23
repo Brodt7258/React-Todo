@@ -1,0 +1,166 @@
+.todo-list {
+  list-style: none;
+  padding: 2em 0;
+
+  .todo-item {
+    width: 100%;
+    padding: 1.5em 1em;
+    margin: 1em 0;
+    border-radius: 10px;
+    box-shadow: 5px 5px 25px -5px rgba(0, 0, 0, 0.25);
+    font-size: 1.2em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    transition: background-color 0.4s ease,
+                color 0.4s ease;
+
+    p {
+      flex: 1;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
+      margin-right: 2em;
+    }
+
+    .check-icon {
+      cursor: pointer;
+    }
+  }
+
+  .todo-light {
+    background-color: #fcfcfc;
+    color: black;
+  }
+
+  .todo-dark {
+    background-color: #212121;
+    color: slateblue;
+  }
+}
+
+.sub-title {
+  font-size: 1.5em;
+  letter-spacing: 0.12em;
+}
+
+.todo-ctrls {
+  margin: 0 auto;
+  max-width: 600px;
+
+  h3 {
+    margin: 1em;
+    transition: color 0.4s ease;
+  }
+
+  form {
+    border-radius: 10px;
+    box-shadow: 5px 5px 25px -5px rgba(0, 0, 0, 0.25);
+
+    padding: 1.5em;
+    display: flex;
+    flex-direction: column;
+
+    transition: background-color 0.4s ease;
+
+    input {
+      padding: 0.75em;
+      border-radius: 10px;
+      border: none;
+      transition: color 0.4s ease,
+                  background-color 0.4s ease;
+    }
+
+    div {
+      display: flex;
+      justify-content: space-between;
+      padding: 1.5em 0 0;
+
+      button {
+        width: 30%;
+        padding: 0.75em;
+        font-weight: 800;
+        outline: none;
+        border: none;
+        box-shadow: 5px 5px 25px -5px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+        color: #eee;
+        transition: background 0.4 ease;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.light-ctrls {
+
+  h3 {
+    color: black;
+  }
+
+  form {
+    background-color: slateblue;
+
+    input {
+      color: black;
+      background-color: white;
+    }
+  }
+
+  .add {
+    background: linear-gradient(lighten(limegreen, 5%), darken(limegreen, 10%));
+  }
+
+  .clear {
+    background: linear-gradient(lighten(crimson, 5%), darken(crimson, 10%));
+  }
+}
+
+.dark-ctrls {
+  
+  h3 {
+    color: slateblue;
+  }
+
+  form {
+    background-color: darken($color: darkslateblue, $amount: 25);
+
+    input {
+      color: palevioletred;
+      background-color: #212121;
+
+      &::placeholder {
+        color: rgba($color: palevioletred, $alpha: 0.6);
+      }
+    }
+  }
+
+  .add {
+    background: linear-gradient(lighten(teal, 5%), darken(teal, 10%));
+  }
+
+  .clear {
+    background: linear-gradient(lighten(palevioletred, 5%), darken(palevioletred, 10%));
+  }
+}
+
+.no-result-panel {
+  margin: 4em 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h3 {
+  transition: color 0.4s ease;
+}
+
+.light-title {
+  color: black;
+}
+
+.dark-title {
+  color: slateblue;
+}

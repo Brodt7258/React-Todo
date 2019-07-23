@@ -1,0 +1,61 @@
+.header-bar {
+  display: flex;
+  
+  width: 100%;
+  padding: 1.5em 5em;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+
+  justify-content: space-between;
+  align-items: center;
+
+  transition: background-color 0.4s ease;
+              
+  h1 {
+    transition: color 0.4s ease;
+  }
+  
+
+  input {
+    padding: 0.75em;
+    border-radius: 10px;
+    border: none;
+    width: 20%;
+
+    transition: color 0.4s ease,
+                background-color 0.4s ease;
+
+    &::placeholder {
+      transition: color 0.4s ease;
+    }
+  }
+}
+
+.light-header {
+  background-color: darkslateblue;
+
+  h1 {
+    color: #ddd;
+  }
+
+  input {
+    color: black;
+    background-color: white;
+  }
+}
+
+.dark-header {
+  background-color: darken($color: darkslateblue, $amount: 25);
+
+  h1 {
+    color: palevioletred;
+  }
+
+  input {
+    color: palevioletred;
+    background-color: #212121;
+
+    &::placeholder {
+      color: rgba($color: palevioletred, $alpha: 0.6);
+    }
+  }
+}
